@@ -1,10 +1,14 @@
 package com.test.todo.web;
 
+import com.test.todo.domain.ProjectTask;
 import com.test.todo.service.ProjectTaskService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.convert.ReadingConverter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @ReadingConverter
@@ -13,4 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProjectTaskController {
     @Autowired
     private ProjectTaskService projectTaskService;
+
+    @PostMapping("")
+    public ResponseEntity<?> addPTTToBoard(@RequestBody ProjectTask projectTask) {
+        ProjectTask newPT = projectTaskService.saveOrUpdaProjectTask(projectTask);
+        return new ResponseEntity<ProjectTask>(newPT , HttpStatus.CREATED);
+    }
 }
