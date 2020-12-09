@@ -48,11 +48,7 @@ public class ProjectTask {
         this.summary = summary;
     }
 
-    public ProjectTask(Long id, String summary, String acceptanceCriteria, String status) {
-        this.id = id;
-        this.summary = summary;
-        this.acceptanceCriteria = acceptanceCriteria;
-        this.status = status;
+    public ProjectTask() {
     }
     
 }
